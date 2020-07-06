@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import com.witoraugusto.worckshopMongo.domain.User;
 import com.witoraugusto.worckshopMongo.dto.UserDto;
@@ -30,10 +31,18 @@ public class UserService {
 	public User insert(User obj) {
 		return userRepository.insert(obj);
 	}
+	
+
+	public void delete(String id) {
+		findById(id);
+		userRepository.deleteById(id);
+	
+	}
 
 	public User fromDto(UserDto objDto) {
 		return new User(objDto.getId(),
 				objDto.getName(),
 				objDto.getEmail());
 	}
+	
 }
