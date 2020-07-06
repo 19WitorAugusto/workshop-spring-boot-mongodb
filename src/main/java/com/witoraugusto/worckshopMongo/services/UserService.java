@@ -26,23 +26,32 @@ public class UserService {
 		Optional<User> obj = userRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
-	
-	//inserir dados
+
+	// inserir dados
 	public User insert(User obj) {
 		return userRepository.insert(obj);
 	}
-	
 
 	public void delete(String id) {
 		findById(id);
 		userRepository.deleteById(id);
-	
+
+	}
+
+	public User update(User obj) {
+		User newObj = findById(obj.getId());
+		updateDate(newObj, obj);
+		return userRepository.save(newObj);
+	}
+
+	private void updateDate(User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+
 	}
 
 	public User fromDto(UserDto objDto) {
-		return new User(objDto.getId(),
-				objDto.getName(),
-				objDto.getEmail());
+		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
-	
+
 }
