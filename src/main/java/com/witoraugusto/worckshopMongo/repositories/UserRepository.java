@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.witoraugusto.worckshopMongo.domain.User;
 
-@Repository
+@Repository // dizer  que é um repositorio
 public interface UserRepository extends MongoRepository<User, String>{
 	
 }

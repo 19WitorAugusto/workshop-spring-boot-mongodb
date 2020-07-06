@@ -11,7 +11,7 @@ import com.witoraugusto.worckshopMongo.repositories.UserRepository;
 @Service
 public class UserService {
 
-	@Autowired
+	@Autowired 
 	private UserRepository userRepository;
 	
 	public List<User> findAll(){
